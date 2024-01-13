@@ -71,39 +71,31 @@ object Calculator {
         val listOfArgs = calculationText.split("+", "-", "/", "*", "^").map { it.toDouble() }.toMutableList()
         val listOfOperations = calculationText.toList().filter { operationPredicate(it) }.map { resolveOperation(it) }.toMutableList()
 
-        println("ListOfArgs $listOfArgs")
-        println("ListOfArgs $listOfOperations")
-
         parameters = listOfArgs
         operators = listOfOperations
 
         var calculationResult: Double? = 0.0
 
        while (parameters.size > 1 && operators.size > 0) {
-           println(parameters)
            val operation = operators[0]
            val a = parameters[0]
            val b = parameters[1]
            calculationResult = operation?.calculate(a, b)
-           println(operation!!.javaClass)
            repeat(2) { parameters.remove(parameters[0]) }
            operators.removeAt(0)
            parameters.add(0, calculationResult!!)
        }
         calculationText.toMutableList().addAll(calculationResult.toString().toCharArray().asSequence())
-        println(calculationText)
         result = parameters[0]
         parameters.clear()
         return result
     }
-
-    fun getResult() = result
 
     fun addCalculationToHistory() {
         history.add(calculationText)
         calculationText = "next"
     }
 
-    fun operationPredicate(char: Char) =  char == '+' || char == '^' || char == '-' || char == '*' || char == '/'
+    private fun operationPredicate(char: Char) =  char == '+' || char == '^' || char == '-' || char == '*' || char == '/'
 
 }

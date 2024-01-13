@@ -3,8 +3,6 @@ package com.example.calculator
 import kotlin.math.pow
 
 abstract class Operation {
-    val a = 40
-    val b = 80
     abstract fun calculate(a: Double, b: Double): Double
 
     companion object {
