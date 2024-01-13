@@ -31,11 +31,16 @@ class MainViewModel : ViewModel() {
     }
 
     fun endOfCalculation() {
-        if(Calculator.calculationText.last().isDigit()) {
-            _result.value = Calculator.calculateResult().toString()
-            Calculator.setCalculationText()
-            Calculator.addCalculationToHistory()
+        try {
+            if(Calculator.calculationText.last().isDigit()) {
+                _result.value = Calculator.calculateResult().toString()
+                Calculator.setCalculationText()
+                Calculator.addCalculationToHistory()
+            }
+        } catch (e: java.lang.NumberFormatException) {
+            println(e.message)
         }
+
     }
 
     private fun setResultValue() {
@@ -43,17 +48,30 @@ class MainViewModel : ViewModel() {
     }
 
     fun convertToBin(){
-        val value = result.value?.split(".")?.first()
-        _result.value = Integer.toBinaryString(Integer.parseInt(value))
+        try {
+            val value = result.value?.split(".")?.first()
+            _result.value = Integer.toBinaryString(Integer.parseInt(value))
+        } catch (e: NumberFormatException) {
+            println(e.message)
+        }
     }
 
     fun convertToHex() {
-        val value = result.value?.split(".")?.first()
-        _result.value = Integer.toHexString(Integer.parseInt(value))
+        try {
+            val value = result.value?.split(".")?.first()
+            _result.value = Integer.toHexString(Integer.parseInt(value))
+        } catch (e: NumberFormatException) {
+            println(e.message)
+        }
+
     }
 
     fun convertToDec() {
-        val value = result.value?.split(".")?.first()
-        _result.value = value?.let { Integer.parseInt(it).toString() }
+        try {
+            val value = result.value?.split(".")?.first()
+            _result.value = value?.let { Integer.parseInt(it).toString() }
+        } catch (e: NumberFormatException) {
+            println(e.message)
+        }
     }
 }
