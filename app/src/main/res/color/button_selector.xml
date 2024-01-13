@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Kolor tła po naciśnięciu -->
-    <item android:state_pressed="true" android:color="#374709" /> <!-- Twój kolor -->
+    <item android:state_pressed="true" android:color="@color/my_green" /> <!-- Twój kolor -->
     <!-- Domyślny kolor tła -->
-    <item android:color="#759242" /> <!-- Twój domyślny kolor -->
+    <item android:color="@color/my_green_light" /> <!-- Twój domyślny kolor -->
 </selector>

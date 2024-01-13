@@ -13,7 +13,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2EF"
+    android:background="@color/my_background"
     tools:context=".ui.main.MainFragment">
 
     <TextView
@@ -120,7 +120,7 @@
                     android:onClick="@{() -> viewModel.onKeyClicked('^')}"
                     android:text="Num"
                     android:textSize="24sp"
-                    android:textColor="#DED3A6"/>
+                    android:textColor="@color/my_text_color"/>
 
                 <ImageButton
                     android:id="@+id/div"
@@ -283,7 +283,7 @@
                     android:background="@drawable/round_button"
                     android:text="."
                     android:textSize="67sp"
-                    android:textColor="#DED3A6"
+                    android:textColor="@color/my_text_color"
                     android:onClick="@{()->viewModel.onKeyClicked('.') }"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
