@@ -23,9 +23,12 @@ object Calculator {
         } else {
             if(calculationText == "0"){
                 calculationText = if(char == '.') "0."
+                else if(operationPredicate(char)) "0$char"
                 else char.toString()
             } else {
-                calculationText += char
+                if (Operation.LIST.contains(calculationText.last()) && Operation.LIST.contains(char)) { println("Zabroniona operacja!")}
+                else calculationText += char
+
             }
         }
     }
@@ -66,7 +69,7 @@ object Calculator {
     fun calculateResult(): Double {
 
         val listOfArgs = calculationText.split("+", "-", "/", "*", "^").map { it.toDouble() }.toMutableList()
-        val listOfOperations = calculationText.toList().filter { char -> char == '+' || char == '^' || char == '-' || char == '*' || char == '/'  }.map { resolveOperation(it) }.toMutableList()
+        val listOfOperations = calculationText.toList().filter { operationPredicate(it) }.map { resolveOperation(it) }.toMutableList()
 
         println("ListOfArgs $listOfArgs")
         println("ListOfArgs $listOfOperations")
@@ -101,11 +104,6 @@ object Calculator {
         calculationText = "next"
     }
 
-    fun blockOperations() {
+    fun operationPredicate(char: Char) =  char == '+' || char == '^' || char == '-' || char == '*' || char == '/'
 
-    }
-
-    fun enableOperations() {
-
-    }
 }

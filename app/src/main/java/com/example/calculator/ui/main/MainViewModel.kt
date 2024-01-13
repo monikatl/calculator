@@ -31,9 +31,11 @@ class MainViewModel : ViewModel() {
     }
 
     fun endOfCalculation() {
-        _result.value = Calculator.calculateResult().toString()
-        Calculator.setCalculationText()
-        Calculator.addCalculationToHistory()
+        if(Calculator.calculationText.last().isDigit()) {
+            _result.value = Calculator.calculateResult().toString()
+            Calculator.setCalculationText()
+            Calculator.addCalculationToHistory()
+        }
     }
 
     private fun setResultValue() {
